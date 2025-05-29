@@ -4,7 +4,7 @@ A fully customizable and lightweight phone number input with country picker for 
 
 ## 🐍️ Version
 
-**v1.0.0** - Release date: **2025-05-30**.
+**v1.0.1** - Release date: **2025-05-30**.
 
 ## ✨ Features
 

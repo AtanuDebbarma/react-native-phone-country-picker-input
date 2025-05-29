@@ -1,6 +1,6 @@
 {
   "name": "react-native-phone-country-picker-input",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React Native component to input phone numbers with a country picker modal.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
