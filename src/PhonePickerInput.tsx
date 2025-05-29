@@ -87,5 +87,7 @@ const styles = StyleSheet.create({
   },
   mainScrollView: {
     flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

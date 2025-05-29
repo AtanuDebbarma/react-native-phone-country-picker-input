@@ -1,6 +1,6 @@
-# 📱 react-native-phone-picker
+# 📱 react-native-phone-country-picker-input
 
-A customizable and lightweight phone number input with country picker for **React Native**, featuring flag emojis, dial codes, and search modal support. No third party dependencies used.
+A customizable and lightweight phone number input with country picker for **React Native**, featuring flag emojis, dial codes, and search modal support. Made using Expo and TypeScript. No third party dependencies used. Built-in support for all countries.
 
 ## ✨ Features
 
@@ -11,9 +11,15 @@ A customizable and lightweight phone number input with country picker for **Reac
 - 🧩 Custom modal support
 - ⚛️ Fully typed with TypeScript
 
+## 📸 Screenshots
+
+| Phone Picker Input Demo                                                                   |
+| ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [![](https://res.cloudinary.com/dyoefmx3t/image/upload/v1748530163/Screenshot_md4e0j.png) | [![](https://res.cloudinary.com/dyoefmx3t/image/upload/v1748530706/screenShotGIF_1_lkf9ra.gif) |
+
 ## 📦 Installation
 
-Zero third-party dependencies — no need to install anything else!
+Zero third-party dependencies — no need to install anything else! Plain vanilla React Native code.
 
 ```bash
 npm install react-native-phone-picker
@@ -30,9 +36,25 @@ import {PhonePickerInput} from 'react-native-phone-picker';
 export default function App() {
   return (
     <PhonePickerInput
-      phoneValue="+123456789"
-      onPhoneNumberValueChange={text => console.log('Phone:', text)}
-      onSelectCountry={country => console.log('Selected Country:', country)}
+      phoneValue={phone}
+      onPhoneNumberValueChange={setPhone}
+      customWrapperScrollViewStyle={{
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+      onSelectCountry={country => {
+        setSelectedCountry(country); // parent state setter . Value of @type {Country} from types.
+      }}
+      customStyles={{
+        phoneTextInputStyle: {
+          // custom style for phone text input.
+          backgroundColor: 'white',
+          fontSize: 18,
+          marginBottom: 10,
+        },
+        flagStyle: {fontSize: 18, padding: 15}, // custom style for flag <Text> component
+        countryListContainer: {justifyContent: 'space-between'}, // custom style for country list container inside modal.
+      }}
     />
   );
 }
@@ -77,14 +99,14 @@ import {
   getCountryName,
   getCountryObject,
   getAllCountries,
-} from 'react-native-phone-picker/utils';
+} from 'react-native-phone-picker/phonePickerUtils';
 ```
 
 ### Functions
 
 | Function                               | Description                                       |
 | -------------------------------------- | ------------------------------------------------- |
-| `getIsoCode(dialCode: string)`         | Get ISO2 country code from dial code              |
+| `getIsoCode(dialCode: string)`         | Get ISO country code from dial code('+1'-> 'US')  |
 | `getCountryFlag(identifier: string)`   | Get flag emoji from ISO or dial code              |
 | `getCountryName(identifier: string)`   | Get country name from ISO or dial code            |
 | `getCountryObject(identifier: string)` | Get full country object                           |

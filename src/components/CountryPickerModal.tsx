@@ -86,6 +86,18 @@ export const CountryPickerModal = ({
     });
   }, [searchText]);
 
+  /**
+   * Handles country selection, updating the selected country state, closing the
+   * modal, and clearing the search filter.
+   *
+   * @param {Country} country - Country object from the country list.
+   */
+  const handleCountrySelect = (country: Country) => {
+    setSelectedCountry(country);
+    setModalVisible(false);
+    setSearchText(''); // Clear the search filter
+  };
+
   return (
     <Modal
       transparent
@@ -148,10 +160,7 @@ export const CountryPickerModal = ({
                 {...otherFlatListProps}
                 renderItem={({item}) => (
                   <Pressable
-                    onPress={() => {
-                      setSelectedCountry(item);
-                      setModalVisible(false);
-                    }}
+                    onPress={() => handleCountrySelect(item)} // Handle country selection onPress.
                     style={({pressed}) => [
                       styles.countryListContainer,
                       customStyles?.countryListContainer,
