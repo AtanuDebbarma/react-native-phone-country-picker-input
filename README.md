@@ -21,9 +21,6 @@ React Native Phone Country Picker Input
 
 <div style="display: flex; flex-wrap: wrap; gap: 20px;">
   <div>
-    <img src="https://res.cloudinary.com/dyoefmx3t/image/upload/v1748544811/Screenshot_1748542925_ww8xc9.png" width="200" alt="screenshot">
-  </div>
-  <div>
     <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHJzdGYwdGswZXZoaGUwcHh2Y3RtZXJxZWJlaHd0aXp2dzE2dGJwdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/S8LYfOdwFE2K6Q8X5a/giphy.gif" width="200" alt="Live demo">
   </div>
     <div>

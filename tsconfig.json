@@ -2,15 +2,21 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    "module": "es2022",
+    "module": "Node16",
     "target": "es2017",
-    "baseUrl": ".",
     "jsx": "react-jsx",
-    "paths": {
-      "@/*": ["./*"]
-    },
-    "types": ["react", "react-native"]
+    "types": ["react", "react-native"],
+    "outDir": "dist",
+    "rootDir": ".",
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "listEmittedFiles": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node16",
+    "resolveJsonModule": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "app/**/*"],
-  "exclude": ["node_modules", ".expo", ".next", "dist"]
+  "include": ["index.ts", "src/**/*"],
+  "exclude": ["node_modules", ".expo", ".next", "dist", "example"]
 }
