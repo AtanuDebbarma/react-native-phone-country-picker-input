@@ -1,0 +1,13 @@
+{
+  "entryPoints": ["./src/**/*.ts", "./src/**/*.tsx"],
+  "tsconfig": "./tsconfig.json",
+  "out": "./docs",
+  "theme": "default",
+  "name": "mobeet-rn-app",
+  "includeVersion": true,
+  "cleanOutputDir": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "useTsLinkResolution": true
+}
