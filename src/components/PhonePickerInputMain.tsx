@@ -1,4 +1,11 @@
-import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import {useEffect, useState} from 'react';
 import {CountryPickerModal} from './CountryPickerModal';
 import {Country, PhonePickerInputProps} from '../types/types';
@@ -7,25 +14,25 @@ import {Country, PhonePickerInputProps} from '../types/types';
  * Core component for phone number input with country picker functionality.
  *
  * @section Props
- * @param {PhonePickerInputProps} props - Component props
- * @param {string} props.phoneValue - Current phone number value
- * @param {(value: string) => void} props.onPhoneNumberValueChange - Phone number change handler
- * @param {KeyboardTypeOptions} props.keyboardType - Keyboard type for input
- * @param {boolean} props.disableTextInput - Disables the text input if true
- * @param {string} props.defaultplaceholder - Input placeholder text
- * @param {TextInputProps} props.customTextInputProps - Additional TextInput props
+ * @param {PhonePickerInputProps} props - Component props.
+ * @param {string} props.phoneValue - Current phone number value.
+ * @param {(value: string) => void} props.onPhoneNumberValueChange - Phone number change handler.
+ * @param {KeyboardTypeOptions} props.keyboardType - Keyboard type for input.
+ * @param {boolean} props.disableTextInput - Disables the text input if true.
+ * @param {string} props.defaultplaceholder - Input placeholder text.
+ * @param {TextInputProps} props.customTextInputProps - Additional TextInput props.
  *
  * @section Country Picker
- * @param {boolean} props.openCountryModal - Programmatically control modal visibility
- * @param {string} [props.defaultFlag='🇺🇸'] - Default flag emoji
- * @param {string} [props.defaultCountryCode='+1'] - Default country dial code
- * @param {(country: Country) => void} props.onSelectCountry - Country selection callback
+ * @param {boolean} props.openCountryModal - Programmatically control modal visibility.
+ * @param {string} [props.defaultFlag='🇺🇸'] - Default flag emoji.
+ * @param {string} [props.defaultCountryCode='+1'] - Default country dial code.
+ * @param {(country: Country) => void} props.onSelectCountry - Country selection callback.
  *
  * @section Modal
- * @param {boolean} [props.customModal=false] - Use custom modal component if true
- * @param {React.ReactNode} [props.customModalComponent] - Custom modal component
+ * @param {boolean} [props.customModal=false] - Use custom modal component if true.
+ * @param {React.ReactNode} [props.customModalComponent] - Custom modal component.
  *
- * @returns {React.JSX.Element} Phone input with country picker controls
+ * @returns {React.JSX.Element} Phone input with country picker controls.
  */
 export const PhonePickerInputMain = ({
   // Core Input
@@ -42,9 +49,11 @@ export const PhonePickerInputMain = ({
   defaultCountryCode = '+1', // Initial dial code before selection
   onSelectCountry, // Parent notification when country changes
 
+  customArrowIconComponent, // React node to render as a custom component. e.g. react-native-vector-icons.
+
   // Modal Configuration
-  customModal = false, // Bypasses default modal when true.
-  customModalComponent, // Replacement modal component. User can pass custom modal component. Must set customModal to true.
+  customModalComponent, // Replacement modal component. User can pass custom modal component.
+  /** Use getAllCountries to get the array of countries then make your own modal component.*/
 
   // Search Customization
   countrySearchPlaceholder, // Overrides default search placeholder
@@ -97,12 +106,22 @@ export const PhonePickerInputMain = ({
         <Text style={[styles.flagStyle, customStyles?.flagStyle]}>
           {selectedCountry.flag}
         </Text>
+        {/* Conditionally render an Image or custom component */}
+        {!customArrowIconComponent ? (
+          <Image
+            source={require('../assets/caretdown.png')}
+            style={[styles.downArrowIcon, customStyles?.downArrowIcon]}
+          />
+        ) : (
+          customArrowIconComponent
+        )}
+
         <Text style={[styles.countryCodeText, customStyles?.countryCodeText]}>
           {selectedCountry.dialCode}
         </Text>
       </Pressable>
 
-      {/* Conditionally rendered phone input */}
+      {/* Conditionally render phone input */}
       {!disableTextInput && (
         <TextInput
           style={[styles.phoneTextInput, customStyles?.phoneTextInputStyle]}
@@ -115,7 +134,7 @@ export const PhonePickerInputMain = ({
       )}
 
       {/* Modal selection - either default or custom */}
-      {!customModal ? (
+      {!customModalComponent ? (
         <CountryPickerModal
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
@@ -147,7 +166,9 @@ const styles = StyleSheet.create({
   flagPickerContainer: {
     marginVertical: '5%',
     flexDirection: 'row',
-    gap: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 5,
     borderWidth: 1,
     borderRadius: 6,
     borderColor: 'rgb(156, 156, 156)',
@@ -173,7 +194,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgb(156, 156, 156)',
     marginVertical: '5%',
-    paddingVertical: 10,
+    paddingVertical: 12,
     paddingHorizontal: 15,
     paddingLeft: 16,
     backgroundColor: 'rgb(221, 221, 221)',
@@ -183,6 +204,13 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 1.5, height: 1.5},
     shadowOpacity: 0.25,
     shadowRadius: 6,
+  },
+  downArrowIcon: {
+    objectFit: 'contain',
+    width: 30,
+    height: 30,
+    padding: 0,
+    margin: 0,
   },
   pressed: {
     opacity: 0.7,

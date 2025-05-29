@@ -1,43 +1,56 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
-
-# dependencies
+# --- Dependency folders ---
 node_modules/
+dist/                # Output folder from tsc build
+web-build/           # Expo web build output
 
-# Expo
+# --- Expo specific ---
 .expo/
-dist/
-web-build/
+.expo-shared/
 expo-env.d.ts
 
-# Native
-.kotlin/
-*.orig.*
+# --- Native platform stuff ---
+android/
+ios/
+*.xcworkspace
+*.xcodeproj
+*.xcuserstate
+*.idea/
 *.jks
 *.p8
 *.p12
 *.key
 *.mobileprovision
+*.keystore
 
-# Metro
+# --- Metro cache ---
+.metro-cache/
 .metro-health-check*
 
-# debug
+# --- Build artifacts & debug ---
+*.tsbuildinfo
+*.log
 npm-debug.*
 yarn-debug.*
 yarn-error.*
 
-# macOS
+# --- macOS & system files ---
 .DS_Store
+Thumbs.db
 *.pem
 
-# local env files
+# --- Editor-specific ---
+.vscode/
+.idea/
+
+# --- Environment variables ---
+.env
+.env.*
 .env*.local
 
-# typescript
-*.tsbuildinfo
-
-# VSCode
-.vscode/
-
-#Typedoc
+# --- Typedoc output ---
 docs/
+
+# --- Misc ---
+*.orig.*
+*.swp
+*.swo

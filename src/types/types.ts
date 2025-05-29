@@ -5,6 +5,7 @@ import {
   ViewStyle,
   TextStyle,
   FlatListProps,
+  ImageStyle,
 } from 'react-native';
 
 /**
@@ -83,12 +84,12 @@ export type PhonePickerInputProps = {
   /** Callback triggered when a country is selected in the modal */
   onSelectCountry?: (country: Country) => void;
 
+  /** React node to render as a custom arrow icon. e.g. react-native-vector-icons. */
+  customArrowIconComponent?: React.ReactNode;
+
   // 4. Custom Modal Support
 
-  /** If true, renders a user-supplied modal instead of the built-in one */
-  customModal?: boolean;
-
-  /** React node to render as a custom modal when `customModal` is true */
+  /** React node to render as a custom modal. Use getAllCountries to get the array of countries then make your own modal.*/
   customModalComponent?: React.ReactNode;
 
   // 5. Search and List Customization
@@ -118,7 +119,13 @@ export type PhonePickerInputProps = {
  * Style overrides for all customizable parts of the phone picker input and modal components.
  */
 export type CustomStyles = {
-  /** Wrapper style for the main input container */
+  /** Style for the main Wrapper ScrollView */
+  wrapperScrollViewStyle?: StyleProp<ViewStyle>;
+
+  /** Style for the main Wrapper View */
+  wrapperViewStyle?: StyleProp<ViewStyle>;
+
+  /** Style for the main input container */
   mainInputContainer?: StyleProp<ViewStyle>;
 
   /** Style for the flag and code picker button container */
@@ -129,6 +136,9 @@ export type CustomStyles = {
 
   /** Text style for the country flag emoji */
   flagStyle?: StyleProp<TextStyle>;
+
+  /** Style for the down arrow icon Image component */
+  downArrowIcon?: StyleProp<ImageStyle>;
 
   /** Text style for the country code (e.g., +1) */
   countryCodeText?: StyleProp<TextStyle>;

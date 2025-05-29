@@ -3,5 +3,4 @@ build
 dist
 android
 ios
-db
-drizzle
+README.md

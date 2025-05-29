@@ -96,6 +96,7 @@ export const CountryPickerModal = ({
     setSelectedCountry(country);
     setModalVisible(false);
     setSearchText(''); // Clear the search filter
+    Keyboard.dismiss();
   };
 
   return (

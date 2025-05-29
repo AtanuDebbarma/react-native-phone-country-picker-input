@@ -14,6 +14,16 @@ export const getIsoCode = (dialCode: string): string | undefined => {
 };
 
 /**
+ * Get dial code by ISO code
+ * @param isoCode Country ISO2 code (e.g., 'US')
+ * @returns {string | undefined} - Dial code (e.g., '+1') or undefined if not found
+ */
+export const getDialCode = (isoCode: string): string | undefined => {
+  return Countries.find((country: Country) => country.iso2 === isoCode)
+    ?.dialCode;
+};
+
+/**
  * Get country flag by dial code or ISO code
  * @param identifier Country dial code (e.g., '+1') or ISO2 code (e.g., 'US')
  * @returns {string | undefined} - Flag emoji (e.g., '🇺🇸') or undefined if not found
