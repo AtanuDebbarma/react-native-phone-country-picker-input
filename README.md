@@ -111,7 +111,7 @@ export default function App() {
 | `onSelectCountry`                   | `(country: Country) => void`                  | Called when a country is selected.               |
 | `openCountryModal`                  | `boolean`                                     | Opens the country picker modal programmatically by setting internal state. |              |
 | `customModalComponent`              | `React.Node`                                   | Your custom modal content. Use `getAllCountries()` to get the array of countries then make your own modal component and pass as prop.
-| `customArrowIconComponent`              | `React.Node`                                   | Your custom arrow down component to replace the default <Image/> e.g. `react-native-vector-icons` or `expo-vector-icons` and pass as prop.                  |
+| `customArrowIconComponent`              | `React.Node`                                   | Your custom arrow down component to replace the default <Image/> e.g. `react-native-vector-icons` or `expo-vector-icons` and pass as prop. Reason for using image was to avoid any package or dependancy to keep it light. Must customize for more dynamic icon.                  |
 | `countrySearchPlaceholder`          | `string`                                      | Search bar placeholder inside modal.             |
 | `otherCountrySearchTextInputProps`  | `TextInputProps`                              | Props for customizing search input inside the modal.              |
 | `searchIcon`                        | `string \| ReactNode`                         | Emoji or icon for the search bar.                |

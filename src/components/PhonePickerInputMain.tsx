@@ -106,7 +106,12 @@ export const PhonePickerInputMain = ({
         <Text style={[styles.flagStyle, customStyles?.flagStyle]}>
           {selectedCountry.flag}
         </Text>
-        {/* Conditionally render an Image or custom component */}
+        {/**
+         * - Conditionally render an Image or custom component
+         * - Reason for using image was to avoid any package or dependancy to keep it light.
+         * - Must customize for more dynamic icon.
+         */}
+
         {!customArrowIconComponent ? (
           <Image
             source={require('../assets/caretdown.png')}
