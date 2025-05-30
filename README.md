@@ -4,7 +4,7 @@ A fully customizable and lightweight phone number input with country picker for 
 
 ## 🐍️ Version
 
-**v1.0.6** - Release date: **2025-05-30**.
+**v1.0.7** - Release date: **2025-05-30**.
 
 ## ✨ Features
 
@@ -165,6 +165,8 @@ type Country = {
 ### CustomStyles
 
 Define styles for all customizable components like flags, inputs, modals, lists, etc.
+ - **Custom styles are ment to override default styles and not merge for almost all cases.**
+ -  Only exception is top most `wrapperScrollViewStyle` and `wrapperViewStyle`. Recommend that disableWrapperScrollView = true is used if parent component has `<ScrollView>` as wrapper.
 
 ## 🎨 CustomStyles Reference
 
@@ -196,7 +198,7 @@ Complete styling options for every component in the library:
 
 ```tsx
 <PhonePickerInput>
-{/*Use View if default scroll view is creating problems with parent scrollable components.disableWrapperScrollView = true*/}
+{/*Use `View` if default scroll view is creating problems with parent scrollable components.disableWrapperScrollView = true*/}
   <Wrapper - customStyles.wrapperViewStyle OR customStyles.wrapperScrollViewStyle>
     <PhonePickerInputMain>
       <View - customStyles.mainInputContainer>
@@ -289,7 +291,7 @@ Complete styling options for every component in the library:
     justifyContent: 'center',
     gap: 3,
   },
-  phoneTextInput: {
+  phoneTextInputStyle: {
     flex: 1,
     fontSize: 20,
     fontWeight: 400,

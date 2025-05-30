@@ -92,17 +92,17 @@ export const PhonePickerInputMain = ({
   };
 
   return (
-    <View style={customStyles?.mainInputContainer ?? styles.mainInputContainer}>
+    <View style={customStyles?.mainInputContainer || styles.mainInputContainer}>
       {/* Country selector button */}
       <Pressable
         style={({pressed}) => [
-          customStyles?.flagPickerContainer ?? styles.flagPickerContainer,
-          pressed && (customStyles?.customPressedStyle ?? styles.pressed),
+          customStyles?.flagPickerContainer || styles.flagPickerContainer,
+          pressed && (customStyles?.customPressedStyle || styles.pressed),
         ]}
         onPress={handleModal}
         accessible={true}
         accessibilityLabel={`Selected country: ${selectedCountry.name}. Tap to change country`}>
-        <Text style={customStyles?.flagStyle ?? styles.flagStyle}>
+        <Text style={customStyles?.flagStyle || styles.flagStyle}>
           {selectedCountry.flag}
         </Text>
         {/**
@@ -114,13 +114,13 @@ export const PhonePickerInputMain = ({
         {!customArrowIconComponent ? (
           <Image
             source={require('./caretdown.png')}
-            style={customStyles?.downArrowIcon ?? styles.downArrowIcon}
+            style={customStyles?.downArrowIcon || styles.downArrowIcon}
           />
         ) : (
           customArrowIconComponent
         )}
 
-        <Text style={customStyles?.countryCodeText ?? styles.countryCodeText}>
+        <Text style={customStyles?.countryCodeText || styles.countryCodeText}>
           {selectedCountry.dialCode}
         </Text>
       </Pressable>
@@ -128,7 +128,7 @@ export const PhonePickerInputMain = ({
       {/* Conditionally render phone input */}
       {!disableTextInput && (
         <TextInput
-          style={customStyles?.phoneTextInputStyle ?? styles.phoneTextInput}
+          style={customStyles?.phoneTextInputStyle || styles.phoneTextInput}
           keyboardType={keyboardType}
           placeholder={defaultplaceholder}
           value={phoneValue}

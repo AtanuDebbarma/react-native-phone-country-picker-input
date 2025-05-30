@@ -44,14 +44,8 @@ export type PhonePickerInputProps = {
   /** If true, uses a View instead of a ScrollView wrapper. Useful in nested scrollable layouts. */
   disableWrapperScrollView?: boolean;
 
-  /** Optional styles for the ScrollView container */
-  customWrapperScrollViewStyle?: StyleProp<ViewStyle>;
-
   /** Determines keyboard tap behavior in ScrollView. Defaults to `'handled'`. */
   wrapperScrollViewKeyboardPersists?: KeybordShouldPersists;
-
-  /** Optional styles for the View container (used if ScrollView is disabled) */
-  customWrapperViewStyle?: StyleProp<ViewStyle>;
 
   // 2. Core Phone Input
 

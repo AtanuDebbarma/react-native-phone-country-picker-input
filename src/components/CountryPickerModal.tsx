@@ -113,27 +113,27 @@ export const CountryPickerModal = ({
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
           style={{flex: 1}}>
-          <View style={customStyles?.modalOverlay ?? styles.modalOverlay}>
+          <View style={customStyles?.modalOverlay || styles.modalOverlay}>
             {/* Modal content area (won't close when clicked inside) */}
             <Pressable
               onPress={e => {
                 e.stopPropagation();
                 Keyboard.dismiss();
               }}
-              style={customStyles?.modalContent ?? styles.modalContent}>
+              style={customStyles?.modalContent || styles.modalContent}>
               {/* Modal header */}
-              <Text style={customStyles?.modalTitle ?? styles.modalTitle}>
+              <Text style={customStyles?.modalTitle || styles.modalTitle}>
                 Select a country
               </Text>
 
               {/* Search bar */}
               <View
                 style={
-                  customStyles?.modalSearchContainer ?? styles.searchContainer
+                  customStyles?.modalSearchContainer || styles.searchContainer
                 }>
                 {typeof searchIcon === 'string' ? (
                   <Text
-                    style={customStyles?.modalSearchIcon ?? styles.searchIcon}>
+                    style={customStyles?.modalSearchIcon || styles.searchIcon}>
                     {searchIcon}
                   </Text>
                 ) : (
@@ -145,7 +145,7 @@ export const CountryPickerModal = ({
                   placeholder={countrySearchPlaceholder}
                   {...otherCountrySearchTextInputProps}
                   style={
-                    customStyles?.modalSearchInput ?? styles.modalSearchInput
+                    customStyles?.modalSearchInput || styles.modalSearchInput
                   }
                 />
               </View>
@@ -161,23 +161,23 @@ export const CountryPickerModal = ({
                   <Pressable
                     onPress={() => handleCountrySelect(item)} // Handle country selection onPress.
                     style={({pressed}) => [
-                      customStyles?.countryListContainer ??
+                      customStyles?.countryListContainer ||
                         styles.countryListContainer,
                       pressed && {opacity: 0.7}, // Visual feedback on press
                     ]}>
                     <Text
                       style={
-                        customStyles?.countryListFlag ?? styles.countryListFlag
+                        customStyles?.countryListFlag || styles.countryListFlag
                       }>
                       {item.flag}
                     </Text>
                     <Text
-                      style={customStyles?.countryName ?? styles.countryName}>
+                      style={customStyles?.countryName || styles.countryName}>
                       {item.name}
                     </Text>
                     <Text
                       style={
-                        customStyles?.countryListDialCode ??
+                        customStyles?.countryListDialCode ||
                         styles.countryListDialCode
                       }>
                       ({item.dialCode})

@@ -11,9 +11,7 @@ import {PhonePickerInputProps} from './types/types';
  *
  * @param {PhonePickerInputProps} props - Component props.
  * @param {boolean} [props.disableWrapperScrollView] - If true, uses View instead of ScrollView.
- * @param {StyleProp<ViewStyle>} [props.customWrapperScrollViewStyle] - Style for ScrollView wrapper.
  * @param {KeyboardPersistBehavior} [props.wrapperScrollViewKeyboardPersists='handled'] - Keyboard persistence behavior.
- * @param {StyleProp<ViewStyle>} [props.customWrapperViewStyle] - Style for View wrapper.
  *
  *
  * @example
@@ -51,7 +49,7 @@ const PhonePickerInput = (props: PhonePickerInputProps): React.JSX.Element => {
   // Simple View wrapper when ScrollView is disabled.
   if (disableWrapperScrollView) {
     return (
-      <View style={customStyles?.wrapperViewStyle ?? styles.mainView}>
+      <View style={[styles.mainView, customStyles?.wrapperViewStyle]}>
         <PhonePickerInputMain {...props} />
       </View>
     );
@@ -64,9 +62,10 @@ const PhonePickerInput = (props: PhonePickerInputProps): React.JSX.Element => {
       // Prevents keyboard from dismissing immediately on tap
       keyboardShouldPersistTaps={wrapperScrollViewKeyboardPersists}
       // Container style with optional custom overrides
-      contentContainerStyle={
-        customStyles?.wrapperScrollViewStyle ?? styles.mainScrollView
-      }>
+      contentContainerStyle={[
+        styles.mainScrollView,
+        customStyles?.wrapperScrollViewStyle,
+      ]}>
       <PhonePickerInputMain {...props} />
     </ScrollView>
   );
@@ -77,11 +76,8 @@ export default PhonePickerInput;
  * Default styles for the component
  */
 const styles = StyleSheet.create({
-  mainView: {
-    flex: 1,
-  },
+  mainView: {},
   mainScrollView: {
-    flex: 1,
     flexGrow: 1,
   },
 });
