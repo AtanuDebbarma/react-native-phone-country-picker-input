@@ -8,8 +8,4 @@ tsconfig.json
 typedoc.json
 *.test.ts
 *.test.tsx
-*.png
-*.jpg
-*.jpeg
-assets/
 src/

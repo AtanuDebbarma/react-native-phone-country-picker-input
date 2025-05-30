@@ -4,7 +4,7 @@ A fully customizable and lightweight phone number input with country picker for 
 
 ## 🐍️ Version
 
-**v1.0.1** - Release date: **2025-05-30**.
+**v1.0.5** - Release date: **2025-05-30**.
 
 ## ✨ Features
 
@@ -19,7 +19,7 @@ A fully customizable and lightweight phone number input with country picker for 
 
 React Native Phone Country Picker Input
 
-<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 30px;">
   <div>
     <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHJzdGYwdGswZXZoaGUwcHh2Y3RtZXJxZWJlaHd0aXp2dzE2dGJwdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/S8LYfOdwFE2K6Q8X5a/giphy.gif" width="200" alt="Live demo">
   </div>
@@ -45,6 +45,7 @@ React Native Phone Country Picker Input
     - [Country](#country)
     - [CustomStyles](#customstyles)
   - [🎨 CustomStyles Reference](#-customstyles-reference)
+    - [Component Structure with Custom Styles](#component-structure-with-custom-styles)
     - [Example Usage](#example-usage)
   - [🛠 Roadmap](#-roadmap)
   - [💬 Contributing](#-contributing)
@@ -191,28 +192,125 @@ Complete styling options for every component in the library:
 | `countryName`                 | Country name in list                | `TextStyle`        | Styles for the country name text (e.g. "United States")                    |
 | `countryListDialCode`         | Dial code in list                   | `TextStyle`        | Styles for the dial code text (e.g. "+1")                                  |
 
+### Component Structure with Custom Styles
+
+```tsx
+<PhonePickerInput>
+{/*Use View if default scroll view is creating problems with parent scrollable components.disableWrapperScrollView = true*/}
+  <Wrapper - customStyles.wrapperViewStyle OR customStyles.wrapperScrollViewStyle>
+    <PhonePickerInputMain>
+      <View - customStyles.mainInputContainer>
+        
+        <Pressable - customStyles.flagPickerContainer, pressed => customStyles.customPressedStyle>
+          <Text - customStyles.flagStyle> // Country Flag </Text>
+        {/**
+         * - Conditionally render an Image or custom component
+         * - Reason for using image was to avoid any package or dependancy to keep it light.
+         * - Must customize for more dynamic icon.
+         */}
+          {!customArrowIconComponent ? 
+            <Image - customStyles.downArrowIcon /> : 
+            customArrowIconComponent
+          }
+
+          <Text - customStyles.countryCodeText> // Dial code like +91 </Text>
+        </Pressable>
+
+        {!disableTextInput &&
+          <TextInput - customStyles.phoneTextInputStyle />
+        }
+        {/**
+         * - Conditionally render a custom modal component or default country picker modal. 
+         * - IF you use customModalComponent, you can get the list of countries by calling `getAllCountries()`.
+         */}
+        {!customModalComponent ?
+          <Modal>
+            <Pressable> // Closes the modal on press
+              <KeyboardAvoidingView>
+                <View - customStyles.modalOverlay>
+                  <Pressable - customStyles.modalContent>
+                    
+                    <Text - customStyles.modalTitle> // Modal title </Text>
+
+                    <View - customStyles.modalSearchContainer>
+                      {typeof searchIcon === 'string' ?
+                        <Text - customStyles.modalSearchIcon> // Search icon </Text> :
+                        searchIcon
+                      }
+
+                      <TextInput - customStyles.modalSearchInput />
+                    </View>
+
+                    <FlatList>
+                      <Pressable - customStyles.countryListContainer, pressed => opacity 0.7>
+                        <Text - customStyles.countryListFlag> // Flag </Text>
+                        <Text - customStyles.countryName> // Country Name </Text>
+                        <Text - customStyles.countryListDialCode> // (+91) </Text>
+                      </Pressable>
+                    </FlatList>
+
+                  </Pressable>
+                </View>
+              </KeyboardAvoidingView>
+            </Pressable>
+          </Modal>
+        : customModalComponent}
+        
+      </View>
+    </PhonePickerInputMain>
+  </Wrapper>
+</PhonePickerInput>
+```
+
+
 ### Example Usage
 ```tsx
 <PhonePickerInput
   customStyles={{
-    flagPickerContainer: {
-      backgroundColor: '#f0f0f0',
-      borderRadius: 8,
-      paddingVertical: 12,
-    },
-    phoneTextInputStyle: {
-      backgroundColor: 'white',
-      borderWidth: 1,
-      borderColor: '#ddd',
-    },
-    countryListContainer: {
-      justifyContent: 'space-between',
-      borderBottomWidth: 1,
-      borderBottomColor: '#eee',
-    }
+    mainInputContainer: {
+     width: '90%',
+     flexDirection: 'row',
+     alignItems: 'center',
+     justifyContent: 'space-evenly',
+     borderWidth: 1,
+     borderRadius: 6,
+     borderColor: 'rgb(156, 156, 156)',
+     paddingVertical: 5,
+     paddingHorizontal: 10,
+     backgroundColor: 'rgb(221, 221, 221)',
+     shadowColor: 'rgba(18, 18, 19, 1)',
+     shadowOffset: {width: 1.5, height: 1.5},
+     shadowOpacity: 0.25,
+     shadowRadius: 6,
+  },
+  flagPickerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 3,
+  },
+  phoneTextInput: {
+    flex: 1,
+    fontSize: 20,
+    fontWeight: 400,
+    marginLeft: '5%',
+  },
   }}
 />
 ```
+
+**Result**
+
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 30px;">
+  <div>
+  <p style="text-align: center"><strong>Before</strong></p>
+    <img src="https://res.cloudinary.com/dyoefmx3t/image/upload/v1748544811/Screenshot_1748542925_ww8xc9.png" width="200" alt="Live demo">
+  </div>
+    <div>
+    <p style="text-align: center"><strong>After</strong></p>
+    <img src="https://res.cloudinary.com/dyoefmx3t/image/upload/v1748591155/Screenshot_1748590799_f46678.png" width="200" alt="Live demo">
+  </div>
+</div>
 
 ## 🛠 Roadmap
 

@@ -113,28 +113,27 @@ export const CountryPickerModal = ({
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
           style={{flex: 1}}>
-          <View style={[styles.modalOverlay, customStyles?.modalOverlay]}>
+          <View style={customStyles?.modalOverlay ?? styles.modalOverlay}>
             {/* Modal content area (won't close when clicked inside) */}
             <Pressable
               onPress={e => {
                 e.stopPropagation();
                 Keyboard.dismiss();
               }}
-              style={[styles.modalContent, customStyles?.modalContent]}>
+              style={customStyles?.modalContent ?? styles.modalContent}>
               {/* Modal header */}
-              <Text style={[styles.modalTitle, customStyles?.modalTitle]}>
+              <Text style={customStyles?.modalTitle ?? styles.modalTitle}>
                 Select a country
               </Text>
 
               {/* Search bar */}
               <View
-                style={[
-                  styles.searchContainer,
-                  customStyles?.modalSearchContainer,
-                ]}>
+                style={
+                  customStyles?.modalSearchContainer ?? styles.searchContainer
+                }>
                 {typeof searchIcon === 'string' ? (
                   <Text
-                    style={[styles.searchIcon, customStyles?.modalSearchIcon]}>
+                    style={customStyles?.modalSearchIcon ?? styles.searchIcon}>
                     {searchIcon}
                   </Text>
                 ) : (
@@ -145,10 +144,9 @@ export const CountryPickerModal = ({
                   onChangeText={setSearchText}
                   placeholder={countrySearchPlaceholder}
                   {...otherCountrySearchTextInputProps}
-                  style={[
-                    styles.modalSearchInput,
-                    customStyles?.modalSearchInput,
-                  ]}
+                  style={
+                    customStyles?.modalSearchInput ?? styles.modalSearchInput
+                  }
                 />
               </View>
 
@@ -163,26 +161,25 @@ export const CountryPickerModal = ({
                   <Pressable
                     onPress={() => handleCountrySelect(item)} // Handle country selection onPress.
                     style={({pressed}) => [
-                      styles.countryListContainer,
-                      customStyles?.countryListContainer,
+                      customStyles?.countryListContainer ??
+                        styles.countryListContainer,
                       pressed && {opacity: 0.7}, // Visual feedback on press
                     ]}>
                     <Text
-                      style={[
-                        styles.countryListFlag,
-                        customStyles?.countryListFlag,
-                      ]}>
+                      style={
+                        customStyles?.countryListFlag ?? styles.countryListFlag
+                      }>
                       {item.flag}
                     </Text>
                     <Text
-                      style={[styles.countryName, customStyles?.countryName]}>
+                      style={customStyles?.countryName ?? styles.countryName}>
                       {item.name}
                     </Text>
                     <Text
-                      style={[
-                        styles.countryListDialCode,
-                        customStyles?.countryListDialCode,
-                      ]}>
+                      style={
+                        customStyles?.countryListDialCode ??
+                        styles.countryListDialCode
+                      }>
                       ({item.dialCode})
                     </Text>
                   </Pressable>

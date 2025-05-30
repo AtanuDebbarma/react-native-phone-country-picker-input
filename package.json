@@ -1,12 +1,12 @@
 {
   "name": "react-native-phone-country-picker-input",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "A React Native component to input phone numbers with a country picker modal.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "src"
+    "assets"
   ],
   "scripts": {
     "dev": "expo start",
@@ -16,7 +16,7 @@
     "devC": "expo start -c",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write .",
-    "build": "npm run clean && tsc",
+    "build": "tsc && cpy src/components/caretdown.png dist/ --parents",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run build",
     "typecheck": "tsc --noEmit"
@@ -38,7 +38,7 @@
     "type": "git",
     "url": "https://github.com/AtanuDebbarma/react-native-phone-country-picker-input.git"
   },
-  "author": "Your Name",
+  "author": "Atanu Debbarma",
   "license": "MIT",
   "homepage": "https://github.com/AtanuDebbarma/react-native-phone-country-picker-input#readme",
   "dependencies": {
